@@ -43,7 +43,7 @@ RUN set -x \
 # PipelineDB
 # ---------------------------------------------------------------------------
 
-ENV PIPELINEDB_VERSION 0.9.5
+ENV PIPELINEDB_VERSION 0.9.6
 RUN mkdir -p /tmp/pipelinedb \
     && apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates wget \
@@ -88,7 +88,7 @@ RUN test -z "${WITH_CSTORE}" \
 
 ARG WITH_KAFKA=
 ENV PIPELINEDB_KAFKA_VERSION 0.9.5
-ENV RDKAFKA_VERSION 0.9.2
+ENV RDKAFKA_VERSION 0.9.4
 RUN test -z "${WITH_KAFKA}" \
     || (set -x \
         && apt-get update \

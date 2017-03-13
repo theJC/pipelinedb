@@ -79,7 +79,9 @@ EOSQL
 
         gosu pipeline pipeline-ctl -D ${PIPELINEDB_DATA} -m fast -w stop
 
-        sed -i -e "s/^listen_addresses =.*$/listen_addresses = '*'/g" "${PIPELINEDB_DATA}/pipelinedb.conf"
+        sed -i -e "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" "${PIPELINEDB_DATA}/pipelinedb.conf"
+        sed -i -e "s/#port = 5432/port = 5432/g" "${PIPELINEDB_DATA}/pipelinedb.conf"
+        sed -i -e "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pipeline_kafka'/g" "${PIPELINEDB_DATA}/pipelinedb.conf"
 
         chmod 640       "${PIPELINEDB_DATA}/pipelinedb.conf"
         chown pipeline  "${PIPELINEDB_DATA}/pipelinedb.conf"
